@@ -1,10 +1,10 @@
-package com.example.ruleEngine.domain.template;
+package com.example.ruleEngine.domain.layout;
 
-import com.example.ruleEngine.domain.layout.DiagramRuleModel;
 import com.example.ruleEngine.domain.rules.DiscountRule;
+import lombok.Data;
 
-public class AgeDiscountRule implements DiscountRule {
-
+@Data
+public class DiagramRuleModel implements RuleModel, DiscountRule {
     private String id;
 
     private String name;
@@ -13,7 +13,9 @@ public class AgeDiscountRule implements DiscountRule {
 
     private double discountRate;
 
-    public AgeDiscountRule(String id, String name, int discountAge, double discountRate) {
+    public DiagramRuleModel(String id, String name, int discountAge, double discountRate) {
+        this.id = id;
+        this.name = name;
         this.discountAge = discountAge;
         this.discountRate = discountRate;
     }
