@@ -1,0 +1,8 @@
+springdoc:
+packages-to-scan: com.example.ruleEngine.controller
+swagger-ui:
+enabled: true
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/rule_engine?authSource=admin
