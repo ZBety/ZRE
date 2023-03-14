@@ -5,11 +5,11 @@ import org.springframework.context.ApplicationContext;
 
 public class RuleEngineContext {
 
-    String name;
+    private String name;
 
-    ApplicationContext appCtx;
+    private ApplicationContext appCtx;
 
-    RuleEngineConfiguration config;
+    private RuleEngineConfiguration config;
 
     public RuleEngineContext(String name, ApplicationContext appCtx, RuleEngineConfiguration config) {
         this.name = name;
@@ -25,4 +25,27 @@ public class RuleEngineContext {
         return appCtx.getBean(name, requestedType);
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public ApplicationContext getAppCtx() {
+        return appCtx;
+    }
+
+    public void setAppCtx(ApplicationContext appCtx) {
+        this.appCtx = appCtx;
+    }
+
+    public RuleEngineConfiguration getConfig() {
+        return config;
+    }
+
+    public void setConfig(RuleEngineConfiguration config) {
+        this.config = config;
+    }
 }

@@ -1,12 +1,14 @@
 package com.example.ruleEngine.controller;
 
 import com.example.ruleEngine.application.DiscountRuleEngineApplication;
+import com.example.ruleEngine.domain.actor.rules.RuleActor;
+import com.example.ruleEngine.msg.DataMsg;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 
 @RestController
 @Tag(name = "规则测试接口")
@@ -19,12 +21,12 @@ public class RuleTestController {
     @Autowired
     private DiscountRuleEngineApplication engine;
 
-    @GetMapping("/test")
+    @PostMapping("/test")
     @Operation(summary = "测试")
-    public double create(String id, int num, double amount) {
-        return engine.getActor()
-                .get(id)
-                .calculateDiscount(num);
+    public Object create(String id, @RequestBody Object data) {
+        DataMsg dataMsg = new DataMsg(data);
+        RuleActor<?,?> actor = engine.getActor(id);
+        return actor.execute(dataMsg);
     }
 
     @GetMapping("/testEngine")

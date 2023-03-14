@@ -1,27 +1,43 @@
 package com.example.ruleEngine.domain.layout;
 
-import com.example.ruleEngine.domain.rules.DiscountRule;
+import com.example.ruleEngine.domain.DataModel;
 import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
-public class DiagramRuleModel implements RuleModel, DiscountRule {
-    private String id;
+@Document
+public class DiagramRuleModel implements RuleModel, DataModel {
 
-    private String name;
+    @Id
+    String id;
 
-    private int discountAge;
+    String no;
 
-    private double discountRate;
+    String name;
 
-    public DiagramRuleModel(String id, String name, int discountAge, double discountRate) {
-        this.id = id;
-        this.name = name;
-        this.discountAge = discountAge;
-        this.discountRate = discountRate;
-    }
+    String type = "DIAGRAM";
 
-    @Override
-    public double calculateDiscount(int num) {
-        return num > discountAge ? discountRate : 0;
-    }
+    String version = "v2";
+
+    int reversion = 1;
+
+    String workspaceId;
+
+    String description;
+
+    Boolean disabled = false;
+
+    long samplingInterval = 0;
+
+    List<EndpointModel> inputs = new ArrayList<>();
+
+    List<EndpointModel> outputs = new ArrayList<>();
+
+    List<NodeRuleModel> nodes = new ArrayList<>();
+//
+//    List<PipeModel> pipes = new ArrayList<>();
 }

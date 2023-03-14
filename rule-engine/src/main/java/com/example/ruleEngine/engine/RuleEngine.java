@@ -17,11 +17,12 @@ public interface RuleEngine<T extends RuleModel> {
 
     void loadRule(T rule);
 
+
     List<T> getLoadedRule();
 
     void unloadRule(List<T> rules);
 
-    void unloadRUle(T rule);
+    void unloadRule(T rule);
 
     RuleEngineContext getContext();
 }

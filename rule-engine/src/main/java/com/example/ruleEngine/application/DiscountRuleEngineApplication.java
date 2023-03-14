@@ -1,7 +1,8 @@
 package com.example.ruleEngine.application;
 
 import com.example.ruleEngine.config.RuleEngineConfiguration;
-import com.example.ruleEngine.domain.layout.DiagramRuleModel;
+import com.example.ruleEngine.domain.actor.rules.RuleActor;
+import com.example.ruleEngine.domain.rules.RuleData;
 import com.example.ruleEngine.engine.DiscountRuleEngine;
 import lombok.Synchronized;
 import org.slf4j.Logger;
@@ -11,7 +12,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
+import java.util.HashMap;
 
 @Service
 public class DiscountRuleEngineApplication implements CommandLineRunner {
@@ -42,9 +43,12 @@ public class DiscountRuleEngineApplication implements CommandLineRunner {
             this.status = true;
         }
 
-        //需要重构！
-        DiagramRuleModel rule = new DiagramRuleModel("123", "ageDiscountRule", 18, 0.5);
-        engine.loadRule(rule);
+        HashMap<String, Object> data = new HashMap<>();
+        data.put("discountAge", 18);
+        data.put("discountRate", 0.5);
+        RuleData ruleData = new RuleData("123", data, "2023", "1", "AGE_DISCOUNT_RULE");
+
+        engine.loadRule(ruleData);
         try {
             engine.start();
         } catch (Exception e) {
@@ -57,7 +61,8 @@ public class DiscountRuleEngineApplication implements CommandLineRunner {
         this.status = false;
     }
 
-    public Map<String, DiagramRuleModel> getActor() {
-        return engine.getActors();
+    public RuleActor<?, ?> getActor(String id) {
+        return engine.getActor(id);
     }
+
 }
