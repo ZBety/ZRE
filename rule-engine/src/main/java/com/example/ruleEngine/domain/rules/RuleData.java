@@ -5,6 +5,7 @@ import com.example.ruleEngine.domain.layout.EndpointModel;
 import com.example.ruleEngine.domain.layout.RuleModel;
 import com.example.ruleEngine.util.ObjectUtil;
 import lombok.Data;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.HashMap;
@@ -14,6 +15,7 @@ import java.util.List;
 @Document
 public class RuleData implements RuleModel {
 
+    @Id
     private String ruleId;
 
     private HashMap<String, Object> data;

@@ -1,4 +1,8 @@
 springdoc:
+  swagger-ui:
+    disable-swagger-default-url: true
+    csrf:
+      enabled: false
 packages-to-scan: com.example.ruleEngine.controller
 swagger-ui:
 enabled: true
@@ -6,3 +10,12 @@ spring:
   data:
     mongodb:
       uri: mongodb://localhost:27017/rule_engine?authSource=admin
+  redis:
+    host: localhost
+    port: 6379
+    password:
+    database: 0
+  #  security:
+#    user:
+#      name: admin
+#      password: password

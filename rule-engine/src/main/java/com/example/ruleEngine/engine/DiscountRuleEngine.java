@@ -17,11 +17,11 @@ import java.util.stream.Collectors;
 public class DiscountRuleEngine implements RuleEngine<RuleData>{
 
     private static final Logger logger = LoggerFactory.getLogger(DiscountRuleEngine.class);
-    String name;
+    private String name;
 
-    RuleEngineContext ctx;
+    private RuleEngineContext ctx;
 
-    RuleEngineConfiguration config;
+    private RuleEngineConfiguration config;
 
     private RunningState runningState = RunningState.UNKNOWN;
     private HashMap<String, RuleActor<?,?>> actors = new HashMap<>();

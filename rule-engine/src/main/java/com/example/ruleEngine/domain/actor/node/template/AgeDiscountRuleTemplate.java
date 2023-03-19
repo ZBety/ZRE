@@ -1,9 +1,12 @@
 package com.example.ruleEngine.domain.actor.node.template;
 
 import com.example.ruleEngine.domain.NodeTemplate;
+import com.example.ruleEngine.domain.Rule;
+import com.example.ruleEngine.domain.Template;
 import lombok.Data;
 
 @Data
+@Template(name="AgeDiscountRule", Type = "AGE_DISCOUNT_RULE")
 public class AgeDiscountRuleTemplate implements NodeTemplate {
 
     private String id;
@@ -23,7 +26,7 @@ public class AgeDiscountRuleTemplate implements NodeTemplate {
     }
 
     public double calculateDiscount(int num) {
-        return num > discountAge ? discountRate : 0;
+        return num > discountAge ? discountRate : 1;
     }
 
 }

@@ -1,14 +1,15 @@
 package com.example.ruleEngine.controller;
 
-import com.example.ruleEngine.domain.Hello;
-import com.example.ruleEngine.service.HelloService;
+import com.example.ruleEngine.domain.NodeDefinitionInfo;
+import com.example.ruleEngine.domain.rules.RuleData;
+import com.example.ruleEngine.service.RuleService;
+import com.example.ruleEngine.util.ScannerUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @Tag(name = "规则定义接口")
@@ -18,12 +19,31 @@ import org.springframework.web.bind.annotation.RestController;
  */
 public class RuleDefineController {
 
-//    @Autowired
-//    private HelloService helloService;
+    @Autowired
+    private RuleService ruleService;
 
-//    @PostMapping("/create")
-//    @Operation(summary = "创建")
-//    public Hello create(@RequestBody Hello hello) {
-//        return helloService.savaHello(hello);
-//    }
+    @PostMapping("/create")
+    @Operation(summary = "创建")
+    public String create(@RequestBody RuleData ruleData) {
+        return ruleService.creatRule(ruleData);
+    }
+
+    @DeleteMapping("/delete")
+    @Operation(summary = "删除规则")
+    public String delete(String ruleId) {
+        return "delete success!";
+    }
+
+    @PutMapping("/update")
+    @Operation(summary = "更新规则")
+    public String update(@RequestBody RuleData ruleData) {
+        ruleService.updateRule(ruleData);
+        return "update success!";
+    }
+
+    @GetMapping("/getTemplate")
+    @Operation(summary = "查看规则节点模版")
+    public List<NodeDefinitionInfo> getDefinition() {
+        return ScannerUtil.findAllTemplate();
+    }
 }

@@ -4,6 +4,7 @@ import com.example.ruleEngine.config.RuleEngineConfiguration;
 import com.example.ruleEngine.domain.actor.rules.RuleActor;
 import com.example.ruleEngine.domain.rules.RuleData;
 import com.example.ruleEngine.engine.DiscountRuleEngine;
+import com.example.ruleEngine.repositories.RuleDataRepository;
 import lombok.Synchronized;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +14,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class DiscountRuleEngineApplication implements CommandLineRunner {
@@ -20,10 +24,13 @@ public class DiscountRuleEngineApplication implements CommandLineRunner {
     private static final Logger logger = LoggerFactory.getLogger(DiscountRuleEngineApplication.class);
 
     @Autowired
-    static ApplicationContext ctx;
+    private static ApplicationContext ctx;
 
     @Autowired
     private static RuleEngineConfiguration config;
+
+    @Autowired
+    private RuleDataRepository ruleDataRepo;
 
     private static DiscountRuleEngine engine = new DiscountRuleEngine(DiscountRuleEngine.class.getSimpleName(), ctx, config);
 
@@ -44,11 +51,9 @@ public class DiscountRuleEngineApplication implements CommandLineRunner {
         }
 
         HashMap<String, Object> data = new HashMap<>();
-        data.put("discountAge", 18);
-        data.put("discountRate", 0.5);
-        RuleData ruleData = new RuleData("123", data, "2023", "1", "AGE_DISCOUNT_RULE");
-
-        engine.loadRule(ruleData);
+        List<RuleData> rules = StreamSupport.stream(ruleDataRepo.findAll().spliterator(), false)
+                .collect(Collectors.toList());
+        engine.loadRule(rules);
         try {
             engine.start();
         } catch (Exception e) {
@@ -63,6 +68,11 @@ public class DiscountRuleEngineApplication implements CommandLineRunner {
 
     public RuleActor<?, ?> getActor(String id) {
         return engine.getActor(id);
+    }
+
+    public RuleActor<?, ?> loadRule(RuleData ruleData) {
+        engine.loadRule(ruleData);
+        return getActor(ruleData.getRuleId());
     }
 
 }

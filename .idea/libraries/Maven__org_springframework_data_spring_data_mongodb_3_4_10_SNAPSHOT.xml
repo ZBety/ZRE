@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Maven: org.springframework.data:spring-data-mongodb:3.4.10-SNAPSHOT">
     <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-mongodb/3.4.10-SNAPSHOT/spring-data-mongodb-3.4.10-20230311.152900-10.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-mongodb/3.4.10-SNAPSHOT/spring-data-mongodb-3.4.10-20230315.161955-15.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-mongodb/3.4.10-SNAPSHOT/spring-data-mongodb-3.4.10-20230311.152900-10-javadoc.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-mongodb/3.4.10-SNAPSHOT/spring-data-mongodb-3.4.10-20230315.161955-15-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-mongodb/3.4.10-SNAPSHOT/spring-data-mongodb-3.4.10-20230311.152900-10-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-mongodb/3.4.10-SNAPSHOT/spring-data-mongodb-3.4.10-20230315.161955-15-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
