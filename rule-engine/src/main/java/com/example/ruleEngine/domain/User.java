@@ -13,7 +13,9 @@ public class User {
 
     private String username;
 
-    private String createTime;
+    private Long createTime;
 
     private String password;
+
+    private Role role;
 }

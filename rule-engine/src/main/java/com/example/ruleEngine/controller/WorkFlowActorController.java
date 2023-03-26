@@ -1,6 +1,12 @@
 package com.example.ruleEngine.controller;
 
+import com.example.ruleEngine.domain.ResponseModel;
+import com.example.ruleEngine.domain.layout.DiagramRuleModel;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,9 +21,10 @@ public class WorkFlowActorController {
 //    @Autowired
 //    private HelloService helloService;
 
-//    @PostMapping("/create")
-//    @Operation(summary = "创建")
-//    public Hello create(@RequestBody Hello hello) {
-//        return helloService.savaHello(hello);
-//    }
+    @PostMapping("/create")
+    @Operation(summary = "创建流程")
+    public ResponseEntity<?> create(@RequestBody DiagramRuleModel diagram) {
+        System.out.println(diagram);
+        return ResponseEntity.ok(new ResponseModel(null,"创建成功！", 200));
+    }
 }

@@ -39,12 +39,12 @@ public class RuleData implements RuleModel {
     }
 
     @Override
-    public String getNo() {
+    public String getId() {
         return null;
     }
 
     @Override
-    public void setNo(String no) {
+    public void setId(String id) {
 
     }
 

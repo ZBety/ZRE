@@ -13,31 +13,31 @@ import java.util.List;
 public class DiagramRuleModel implements RuleModel, DataModel {
 
     @Id
-    String id;
+    private String id;
 
-    String no;
+    private String no;
 
-    String name;
+    private String name;
 
-    String type = "DIAGRAM";
+    private String type = "DIAGRAM";
 
-    String version = "v2";
+    private String version = "v2";
 
-    int reversion = 1;
+    private int reversion = 1;
 
-    String workspaceId;
+    private String workspaceId;
 
-    String description;
+    private String description;
 
-    Boolean disabled = false;
+    private Boolean disabled = false;
 
-    long samplingInterval = 0;
+    private long samplingInterval = 0;
 
-    List<EndpointModel> inputs = new ArrayList<>();
+    private List<EndpointModel> inputs = new ArrayList<>();
 
-    List<EndpointModel> outputs = new ArrayList<>();
+    private List<EndpointModel> outputs = new ArrayList<>();
 
-    List<NodeRuleModel> nodes = new ArrayList<>();
-//
-//    List<PipeModel> pipes = new ArrayList<>();
+    private List<NodeRuleModel> nodes = new ArrayList<>();
+
+    private List<Edge> edges = new ArrayList<>();
 }

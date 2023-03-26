@@ -17,4 +17,12 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowCredentials(true)
                 .maxAge(3600);
     }
+
+//    @Bean
+//    public FilterRegistrationBean<OptionFilter> optionFilter() {
+//        FilterRegistrationBean<OptionFilter> registrationBean = new FilterRegistrationBean<>();
+//        registrationBean.setFilter(new OptionFilter());
+//        registrationBean.setOrder(Ordered.HIGHEST_PRECEDENCE);
+//        return registrationBean;
+//    }
 }

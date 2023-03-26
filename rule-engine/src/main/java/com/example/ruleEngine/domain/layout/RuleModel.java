@@ -3,8 +3,8 @@ package com.example.ruleEngine.domain.layout;
 import java.util.List;
 
 public interface RuleModel {
-    String getNo();
-    void setNo(String no);
+    String getId();
+    void setId(String id);
 
     String getName();
     void setName(String name);

@@ -1,8 +1,10 @@
 package com.example.ruleEngine.controller;
 
 
+import com.example.ruleEngine.domain.AuditAOP;
 import com.example.ruleEngine.domain.LoginRequest;
 import com.example.ruleEngine.domain.ResponseModel;
+import com.example.ruleEngine.service.AuthService;
 import com.example.ruleEngine.service.UserService;
 import com.example.ruleEngine.util.JwtTokenUtil;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -12,10 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,6 +32,9 @@ public class AuthController {
     private UserService userService;
 
     @Autowired
+    private AuthService authService;
+
+    @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
 
@@ -47,6 +49,11 @@ public class AuthController {
         Map<String, Object> data = new HashMap<>();
         data.put("token", token);
         return ResponseEntity.ok(new ResponseModel(data, "登录成功！", 200));
+    }
+
+    @GetMapping("/roles")
+    public ResponseEntity<ResponseModel> getRoles() {
+        return ResponseEntity.ok(new ResponseModel(authService.getRoles(), "success！", 200));
     }
 }
 

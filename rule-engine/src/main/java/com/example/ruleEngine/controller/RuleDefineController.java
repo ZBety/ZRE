@@ -1,12 +1,15 @@
 package com.example.ruleEngine.controller;
 
+import com.example.ruleEngine.domain.AuditAOP;
 import com.example.ruleEngine.domain.NodeDefinitionInfo;
+import com.example.ruleEngine.domain.ResponseModel;
 import com.example.ruleEngine.domain.rules.RuleData;
 import com.example.ruleEngine.service.RuleService;
 import com.example.ruleEngine.util.ScannerUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,20 +33,23 @@ public class RuleDefineController {
 
     @DeleteMapping("/delete")
     @Operation(summary = "删除规则")
-    public String delete(String ruleId) {
-        return "delete success!";
+    @AuditAOP(action = "删除规则")
+    public ResponseEntity<ResponseModel> delete(String ruleId) {
+        return ResponseEntity.ok(new ResponseModel("delete success!", "",200));
     }
 
     @PutMapping("/update")
     @Operation(summary = "更新规则")
-    public String update(@RequestBody RuleData ruleData) {
+    @AuditAOP(action = "更新规则")
+    public ResponseEntity<ResponseModel> update(@RequestBody RuleData ruleData) {
         ruleService.updateRule(ruleData);
-        return "update success!";
+        return ResponseEntity.ok(new ResponseModel("update success!", "",200));
     }
 
     @GetMapping("/getTemplate")
     @Operation(summary = "查看规则节点模版")
-    public List<NodeDefinitionInfo> getDefinition() {
-        return ScannerUtil.findAllTemplate();
+    public ResponseEntity<?> getDefinition() {
+        List<NodeDefinitionInfo> templates = ScannerUtil.findAllTemplate();
+        return ResponseEntity.ok(new ResponseModel(templates, "获取成功！", 200));
     }
 }

@@ -1,5 +1,6 @@
 package com.example.ruleEngine;
 
+import com.example.ruleEngine.domain.Role;
 import com.example.ruleEngine.domain.User;
 import com.example.ruleEngine.service.UserService;
 import org.junit.jupiter.api.Test;
@@ -15,8 +16,9 @@ class RuleEngineApplicationTests {
     @Test
     void contextLoads() {
         User user = new User();
-        user.setUsername("admin");
-        user.setPassword("123456");
+        user.setUsername("user");
+        user.setPassword("password");
+        user.setRole(Role.USER);
         userService.create(user);
     }
 

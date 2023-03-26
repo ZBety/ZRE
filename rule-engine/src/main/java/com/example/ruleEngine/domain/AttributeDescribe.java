@@ -6,6 +6,6 @@ import lombok.Data;
 public class AttributeDescribe {
     String name;
     String type;
-    String value;
+    Object value;
     String description;
 }
