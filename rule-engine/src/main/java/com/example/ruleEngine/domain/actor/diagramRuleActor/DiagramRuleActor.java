@@ -43,6 +43,7 @@ public class DiagramRuleActor extends NodeActor<DiagramRuleModel, DiagramRuleMod
     }
 
     public void initLayout() {
+        System.out.println("");
         this.nodeActors = initNodeActors(ctx, ruleModel);
     }
 
