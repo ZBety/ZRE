@@ -41,7 +41,7 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody LoginRequest loginRequest) throws Exception {
         if (!userService.login(loginRequest)) {
-            return ResponseEntity.ok("Incorrect username or password");
+            return ResponseEntity.ok(new ResponseModel(null, "Incorrect username or password", 400));
         }
 
         final UserDetails userDetails = userService.loadUserByUsername(loginRequest.getUsername());

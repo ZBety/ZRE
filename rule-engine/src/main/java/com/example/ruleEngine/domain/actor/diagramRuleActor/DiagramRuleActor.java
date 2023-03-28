@@ -10,13 +10,13 @@ import com.example.ruleEngine.msg.DataMsg;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class ReactorDiagramRuleActor extends NodeActor<DiagramRuleModel, DiagramRuleModel> {
+public class DiagramRuleActor extends NodeActor<DiagramRuleModel, DiagramRuleModel> {
 
     RuleEngineContext ctx;
 
     DiagramRuleModel ruleModel;
 
-    public ReactorDiagramRuleActor(RuleEngineContext ctx, DiagramRuleModel ruleModel) {
+    public DiagramRuleActor(RuleEngineContext ctx, DiagramRuleModel ruleModel) {
         super(ctx, ruleModel, ruleModel);
         this.ctx = ctx;
         this.ruleModel = ruleModel;

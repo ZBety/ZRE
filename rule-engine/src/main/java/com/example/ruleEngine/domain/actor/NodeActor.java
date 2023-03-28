@@ -40,8 +40,8 @@ public abstract class NodeActor<M extends DataModel, T extends RuleModel> implem
 
     @Override
     public void start() {
-        DataMsg input = inputs.get(nodeRuleModel.getName());
-        onHandle(input);
+//        DataMsg input = inputs.get(nodeRuleModel.getName());
+//        onHandle(input);
     }
 
     @Override

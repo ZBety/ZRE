@@ -2,39 +2,38 @@ package com.example.ruleEngine.domain.actor.node;
 
 import com.example.ruleEngine.domain.actor.NodeActor;
 import com.example.ruleEngine.domain.actor.node.template.AgeDiscountRuleTemplate;
+import com.example.ruleEngine.domain.actor.node.template.EndRuleTemplate;
 import com.example.ruleEngine.domain.layout.DiagramRuleModel;
 import com.example.ruleEngine.domain.layout.NodeRuleModel;
 import com.example.ruleEngine.engine.RuleEngineContext;
 import com.example.ruleEngine.msg.DataMsg;
-import lombok.Data;
 
 import java.util.HashMap;
 
-public class AgeDiscountNodeActor extends NodeActor<AgeDiscountRuleTemplate, NodeRuleModel> {
-    private AgeDiscountRuleTemplate nodeTemplate;
+public class EndNodeActor extends NodeActor<EndRuleTemplate, NodeRuleModel> {
+    private final EndRuleTemplate nodeTemplate;
 
-    public static final String NAME = "ALERT_EVENT";
+    public static final String NAME = "END_RULE";
 
-    private double result;
+    private Object result;
 
-    public AgeDiscountNodeActor(RuleEngineContext ctx, DiagramRuleModel diagramRuleModel, NodeRuleModel nodeRuleModel) {
+    public EndNodeActor(RuleEngineContext ctx, DiagramRuleModel diagramRuleModel, NodeRuleModel nodeRuleModel) {
         super(ctx, diagramRuleModel, nodeRuleModel);
-        this.nodeTemplate = nodeRuleModel.getNodeTemplate(AgeDiscountRuleTemplate.class);
+        this.nodeTemplate = nodeRuleModel.getNodeTemplate(EndRuleTemplate.class);
     }
 
     @Override
     protected void onHandle(DataMsg dataMsg) {
         HashMap<String, Object> map = dataMsg.dataAsMap();
         int age = (int) map.get("age");
-
-        result = nodeTemplate.calculateDiscount(age);
+        this.result = nodeTemplate;
     }
 
-    public AgeDiscountRuleTemplate getNodeTemplate() {
+    public EndRuleTemplate getNodeTemplate() {
         return nodeTemplate;
     }
 
-    public double getResult() {
+    public Object getResult() {
         return result;
     }
 }

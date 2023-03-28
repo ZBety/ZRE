@@ -1,6 +1,6 @@
 package com.example.ruleEngine.domain.actor;
 
-import com.example.ruleEngine.domain.actor.diagramRuleActor.ReactorDiagramRuleActor;
+import com.example.ruleEngine.domain.actor.diagramRuleActor.DiagramRuleActor;
 import com.example.ruleEngine.domain.actor.node.AgeDiscountNodeActor;
 import com.example.ruleEngine.domain.actor.rules.AgeDiscountRuleActor;
 import com.example.ruleEngine.domain.actor.rules.RuleActor;
@@ -16,13 +16,13 @@ public class ActorFactory {
      * 构造规则执行器
      */
 
-    public static ReactorDiagramRuleActor getDiagramRuleActor(
+    public static DiagramRuleActor getDiagramRuleActor(
             RuleEngineContext ctx,
             RuleModel ruleModel
     ) {
         switch (ruleModel.getType()) {
             case "DIAGRAM":
-                return new ReactorDiagramRuleActor(ctx, (DiagramRuleModel) ruleModel);
+                return new DiagramRuleActor(ctx, (DiagramRuleModel) ruleModel);
             default:
                 System.out.println(ruleModel.getType()+"类型的规则模板没有找到！");
                 return null;

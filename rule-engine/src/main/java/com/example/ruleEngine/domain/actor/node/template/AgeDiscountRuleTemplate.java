@@ -9,10 +9,6 @@ import lombok.Data;
 @Template(name="AgeDiscountRule", Type = "AGE_DISCOUNT_RULE")
 public class AgeDiscountRuleTemplate implements NodeTemplate {
 
-    private String id;
-
-    private String name;
-
     private int discountAge;
 
     private double discountRate;
