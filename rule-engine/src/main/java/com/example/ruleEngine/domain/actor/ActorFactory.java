@@ -2,6 +2,8 @@ package com.example.ruleEngine.domain.actor;
 
 import com.example.ruleEngine.domain.actor.diagramRuleActor.DiagramRuleActor;
 import com.example.ruleEngine.domain.actor.node.AgeDiscountNodeActor;
+import com.example.ruleEngine.domain.actor.node.BeginNodeActor;
+import com.example.ruleEngine.domain.actor.node.EndNodeActor;
 import com.example.ruleEngine.domain.actor.rules.AgeDiscountRuleActor;
 import com.example.ruleEngine.domain.actor.rules.RuleActor;
 import com.example.ruleEngine.domain.layout.DiagramRuleModel;
@@ -36,12 +38,15 @@ public class ActorFactory {
     ) {
         NodeActor actor = switch (nodeRuleModel.getType()) {
             case AgeDiscountNodeActor.NAME -> new AgeDiscountNodeActor(ctx, diagramRuleModel, nodeRuleModel);
+            case BeginNodeActor.NAME -> new BeginNodeActor(ctx, diagramRuleModel, nodeRuleModel);
+            case EndNodeActor.NAME -> new EndNodeActor(ctx, diagramRuleModel, nodeRuleModel);
 //            default -> {System.out.println("没有找到" + nodeRuleModel.getType() +"类型的执行器！");
 //            null ;}
             default -> null;
         };
-        assert actor != null;
-        actor.start();
+        if (actor != null) {
+            actor.start();
+        }
         return actor;
     }
 
@@ -53,8 +58,9 @@ public class ActorFactory {
             case AgeDiscountRuleActor.NAME -> new AgeDiscountRuleActor(ctx, ruleData);
             default -> null;
         };
-        assert actor != null;
-        actor.start();
+        if (actor != null) {
+            actor.start();
+        }
         return actor;
     }
 

@@ -29,7 +29,6 @@ public class AgeDiscountRuleActor extends RuleActor<AgeDiscountRuleTemplate, Rul
         return ruleTemplate.calculateDiscount(age);
     }
 
-    @Override
     public AgeDiscountRuleTemplate getRuleTemplate() {
         return ruleTemplate;
     }

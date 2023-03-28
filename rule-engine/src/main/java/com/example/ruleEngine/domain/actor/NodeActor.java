@@ -60,7 +60,7 @@ public abstract class NodeActor<M extends DataModel, T extends RuleModel> implem
 
     @Override
     public String getId() {
-        return null;
+        return nodeRuleModel.getId();
     }
 
     @Override

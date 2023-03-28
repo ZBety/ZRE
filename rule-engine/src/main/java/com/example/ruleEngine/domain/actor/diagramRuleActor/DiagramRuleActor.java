@@ -12,9 +12,9 @@ import java.util.stream.Collectors;
 
 public class DiagramRuleActor extends NodeActor<DiagramRuleModel, DiagramRuleModel> {
 
-    RuleEngineContext ctx;
+    private RuleEngineContext ctx;
 
-    DiagramRuleModel ruleModel;
+    private DiagramRuleModel ruleModel;
 
     public DiagramRuleActor(RuleEngineContext ctx, DiagramRuleModel ruleModel) {
         super(ctx, ruleModel, ruleModel);
@@ -49,7 +49,7 @@ public class DiagramRuleActor extends NodeActor<DiagramRuleModel, DiagramRuleMod
     private HashMap<String, NodeActor<?, ?>> initNodeActors(RuleEngineContext ctx, DiagramRuleModel ruleModel) {
         Map<String, NodeActor<?, ?>> nodeActors = ruleModel.getNodes().stream()
                 .map(node -> ActorFactory.getNodeActor(ctx, ruleModel, node))
-                .collect(Collectors.toMap(nodeActor -> ruleModel.getName(), nodeActor -> nodeActor));
+                .collect(Collectors.toMap(NodeActor::getId, nodeActor -> nodeActor));
         return new HashMap<>(nodeActors);
     }
 

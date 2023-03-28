@@ -11,9 +11,9 @@ import lombok.Data;
 import java.util.HashMap;
 
 public class AgeDiscountNodeActor extends NodeActor<AgeDiscountRuleTemplate, NodeRuleModel> {
-    private AgeDiscountRuleTemplate nodeTemplate;
+    private final AgeDiscountRuleTemplate nodeTemplate;
 
-    public static final String NAME = "ALERT_EVENT";
+    public static final String NAME = "AGE_DISCOUNT_RULE";
 
     private double result;
 
@@ -26,8 +26,7 @@ public class AgeDiscountNodeActor extends NodeActor<AgeDiscountRuleTemplate, Nod
     protected void onHandle(DataMsg dataMsg) {
         HashMap<String, Object> map = dataMsg.dataAsMap();
         int age = (int) map.get("age");
-
-        result = nodeTemplate.calculateDiscount(age);
+        this.result = nodeTemplate.calculateDiscount(age);
     }
 
     public AgeDiscountRuleTemplate getNodeTemplate() {
