@@ -6,15 +6,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
-@Service
+import javax.annotation.PostConstruct;
+
+ @Service
 public class DiagramTaskService {
 
     @Autowired
     private DiagramRuleEngineApplication application;
 
+    private DiagramRuleEngine engine;
+
+    @PostConstruct
+    public void init() {
+        engine = application.getEngine();
+    }
 
     public void execute(Object data) {
-        DiagramRuleEngine engine = application.getEngine();
         engine.execute(data);
     }
 
