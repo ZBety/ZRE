@@ -6,8 +6,10 @@ import com.example.ruleEngine.domain.actor.ActorFactory;
 import com.example.ruleEngine.domain.actor.RunningState;
 import com.example.ruleEngine.domain.actor.diagramRuleActor.DiagramRuleActor;
 import com.example.ruleEngine.domain.actor.rules.RuleActor;
+import com.example.ruleEngine.domain.io.OutputSlot;
 import com.example.ruleEngine.domain.layout.DiagramRuleModel;
 import com.example.ruleEngine.domain.rules.RuleData;
+import com.example.ruleEngine.msg.DataMsg;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -29,6 +31,7 @@ public class DiagramRuleEngine implements RuleEngine<DiagramRuleModel>{
 
     private RunningState runningState = RunningState.UNKNOWN;
     private HashMap<String, DiagramRuleActor> actors = new HashMap<>();
+    private OutputSlot<DataMsg> match = new OutputSlot<>();
 
     private List<DiagramRuleModel> getLoadedRules() {
         return actors.values().stream()
@@ -57,6 +60,9 @@ public class DiagramRuleEngine implements RuleEngine<DiagramRuleModel>{
         actors.forEach((key, actor) -> {
             actor.start();
             logger.info("diagram " + key + " started!");
+        });
+        this.actors.values().forEach(item -> {
+            match.connect(item.getBegin().getInputs());
         });
         this.runningState = RunningState.RUNNING;
     }
@@ -141,5 +147,9 @@ public class DiagramRuleEngine implements RuleEngine<DiagramRuleModel>{
 
     public DiagramRuleActor getActor(String id) {
         return actors.get(id);
+    }
+
+    public void execute(Object data) {
+        match.send(new DataMsg(data));
     }
 }

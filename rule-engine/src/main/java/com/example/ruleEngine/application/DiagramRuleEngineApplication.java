@@ -37,7 +37,7 @@ public class DiagramRuleEngineApplication implements CommandLineRunner {
     @Autowired
     private DiagramRuleModelRepository drmRepo;
 
-    private static DiagramRuleEngine engine = new DiagramRuleEngine(DiagramRuleEngine.class.getSimpleName(), ctx, config);
+    private DiagramRuleEngine engine = new DiagramRuleEngine(DiagramRuleEngine.class.getSimpleName(), ctx, config);
 
     private Boolean status = false;
 
@@ -57,6 +57,7 @@ public class DiagramRuleEngineApplication implements CommandLineRunner {
 
         HashMap<String, Object> data = new HashMap<>();
         List<DiagramRuleModel> rules = StreamUtil.iterableToList(drmRepo.findAll());
+        System.out.println(rules);
         engine.loadRule(rules);
         try {
             engine.start();
@@ -84,4 +85,7 @@ public class DiagramRuleEngineApplication implements CommandLineRunner {
         return getActor(diagramRuleModel.getId());
     }
 
+    public DiagramRuleEngine getEngine() {
+        return engine;
+    }
 }

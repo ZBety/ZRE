@@ -1,16 +1,19 @@
 package com.example.ruleEngine.domain.actor;
 
 import com.example.ruleEngine.domain.DataModel;
+import com.example.ruleEngine.domain.io.InputSlot;
 import com.example.ruleEngine.domain.io.OutputSlot;
 import com.example.ruleEngine.domain.layout.DiagramRuleModel;
-import com.example.ruleEngine.domain.layout.EndpointModel;
+import com.example.ruleEngine.domain.layout.Edge;
 import com.example.ruleEngine.domain.layout.RuleModel;
 import com.example.ruleEngine.engine.RuleEngineContext;
 import com.example.ruleEngine.msg.DataMsg;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
-public abstract class NodeActor<M extends DataModel, T extends RuleModel> implements Actor, EndpointProvider{
+public abstract class NodeActor<M extends DataModel, T extends RuleModel> implements Actor {
 
     RuleEngineContext ctx;
 
@@ -18,12 +21,21 @@ public abstract class NodeActor<M extends DataModel, T extends RuleModel> implem
 
     T nodeRuleModel;
 
-    HashMap<String, DataMsg> inputs = new HashMap<>();
+    //    private List<InputSlot<DataMsg>> inputs = new ArrayList<>();
+    private InputSlot<DataMsg> inputs = new InputSlot<>();
+
+    private OutputSlot<DataMsg> outputs = new OutputSlot<>();
+
+    private Boolean begin = false;
+
+    private Boolean end = false;
 
     public NodeActor(RuleEngineContext ctx, DiagramRuleModel diagramRuleModel, T nodeRuleModel) {
         this.ctx = ctx;
         this.diagramRuleModel = diagramRuleModel;
         this.nodeRuleModel = nodeRuleModel;
+        begin = nodeRuleModel.getType().equals("BEGIN_RULE");
+        end = nodeRuleModel.getType().equals("End_RULE");
     }
 
     protected RunningState runningState = RunningState.PENDING;
@@ -40,8 +52,10 @@ public abstract class NodeActor<M extends DataModel, T extends RuleModel> implem
 
     @Override
     public void start() {
-//        DataMsg input = inputs.get(nodeRuleModel.getName());
-//        onHandle(input);
+        /**
+         * 异步执行onHandle，一直监听，直到input
+         */
+        inputs.connect(this::onHandle);
     }
 
     @Override
@@ -49,9 +63,19 @@ public abstract class NodeActor<M extends DataModel, T extends RuleModel> implem
 
     }
 
-    public void initIo() {
-//        nodeRuleModel.getInputs().stream().map().forEach();
-    }
+//    public void initIo() {
+//        diagramRuleModel.getEdges().forEach(this::addIO);
+//    }
+
+//    void addIO(Edge it) {
+//        if (Objects.equals(it.getSource(), nodeRuleModel.getId())) {
+//            OutputSlot<DataMsg> outputSlot = new OutputSlot<>();
+//        }
+//        if (Objects.equals(it.getTarget(), nodeRuleModel.getId())) {
+//            InputSlot<DataMsg> inputSlot = new InputSlot<>();
+//            this.inputs.add(inputSlot);
+//        }
+//    }
 
     @Override
     public RunningState status() {
@@ -73,33 +97,34 @@ public abstract class NodeActor<M extends DataModel, T extends RuleModel> implem
         return false;
     }
 
-    @Override
-    public DataMsg getInput(String name) {
-        return inputs.get(name);
+
+    protected void onHandle(DataMsg dataMsg) {
     }
 
-    @Override
-    public DataMsg getInput(EndpointModel endpoint) {
-        return getInput(endpoint.getName());
-    }
+//    public InputSlot<DataMsg> addInputs(InputSlot<DataMsg> input) {
+//        this.inputs.add(input);
+//        return input;
+//    }
 
-    @Override
-    public OutputSlot<?> getOutput(EndpointModel endpoint) {
-        return getOutput(endpoint.getName());
-    }
-
-    @Override
-    public OutputSlot<?> getOutput(String name) {
-        return null;
-    }
-
-    protected void onHandle(DataMsg dataMsg){};
-
-    public HashMap<String, DataMsg> getInputs() {
+    public InputSlot<DataMsg> getInputs() {
         return inputs;
     }
 
-    public void setInputs(HashMap<String, DataMsg> inputs) {
-        this.inputs = inputs;
+    public OutputSlot<DataMsg> getOutputs() {
+        return outputs;
+    }
+
+//    public OutputSlot<DataMsg> addOutputs(InputSlot<DataMsg> inputSlot) {
+//        this.outputs.add(inputSlot);
+//        return output;
+//    }
+
+
+    public Boolean isBegin() {
+        return begin;
+    }
+
+    public Boolean isEnd() {
+        return end;
     }
 }

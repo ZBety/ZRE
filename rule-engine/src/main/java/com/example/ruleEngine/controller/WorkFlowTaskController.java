@@ -1,6 +1,13 @@
 package com.example.ruleEngine.controller;
 
+import com.example.ruleEngine.domain.ResponseModel;
+import com.example.ruleEngine.service.DiagramTaskService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,12 +19,13 @@ import org.springframework.web.bind.annotation.RestController;
  */
 public class WorkFlowTaskController {
 
-//    @Autowired
-//    private HelloService helloService;
+    @Autowired
+    private DiagramTaskService taskService;
 
-//    @PostMapping("/create")
-//    @Operation(summary = "创建")
-//    public Hello create(@RequestBody Hello hello) {
-//        return helloService.savaHello(hello);
-//    }
+    @PostMapping("/execute")
+    @Operation(summary = "执行流程")
+    public ResponseEntity<?> execute(@RequestBody Object data) {
+        taskService.execute(data);
+        return ResponseEntity.ok(new ResponseModel(null,"success",200));
+    }
 }

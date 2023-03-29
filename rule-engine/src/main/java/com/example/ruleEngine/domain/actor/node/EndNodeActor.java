@@ -3,6 +3,7 @@ package com.example.ruleEngine.domain.actor.node;
 import com.example.ruleEngine.domain.actor.NodeActor;
 import com.example.ruleEngine.domain.actor.node.template.AgeDiscountRuleTemplate;
 import com.example.ruleEngine.domain.actor.node.template.EndRuleTemplate;
+import com.example.ruleEngine.domain.io.OutputSlot;
 import com.example.ruleEngine.domain.layout.DiagramRuleModel;
 import com.example.ruleEngine.domain.layout.NodeRuleModel;
 import com.example.ruleEngine.engine.RuleEngineContext;
@@ -25,8 +26,8 @@ public class EndNodeActor extends NodeActor<EndRuleTemplate, NodeRuleModel> {
     @Override
     protected void onHandle(DataMsg dataMsg) {
         HashMap<String, Object> map = dataMsg.dataAsMap();
-        int age = (int) map.get("age");
-        this.result = nodeTemplate;
+        this.result = map.get("result");
+        System.out.println("流程最终运行结果："+result);
     }
 
     public EndRuleTemplate getNodeTemplate() {

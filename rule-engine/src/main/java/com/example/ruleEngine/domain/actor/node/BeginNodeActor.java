@@ -1,14 +1,18 @@
 package com.example.ruleEngine.domain.actor.node;
 
+import com.example.ruleEngine.domain.DataMsgCheck;
 import com.example.ruleEngine.domain.actor.NodeActor;
 import com.example.ruleEngine.domain.actor.node.template.AgeDiscountRuleTemplate;
 import com.example.ruleEngine.domain.actor.node.template.BeginRuleTemplate;
+import com.example.ruleEngine.domain.io.OutputSlot;
 import com.example.ruleEngine.domain.layout.DiagramRuleModel;
 import com.example.ruleEngine.domain.layout.NodeRuleModel;
 import com.example.ruleEngine.engine.RuleEngineContext;
 import com.example.ruleEngine.msg.DataMsg;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class BeginNodeActor extends NodeActor<BeginRuleTemplate, NodeRuleModel> {
     private final BeginRuleTemplate nodeTemplate;
@@ -24,12 +28,18 @@ public class BeginNodeActor extends NodeActor<BeginRuleTemplate, NodeRuleModel> 
 
     @Override
     protected void onHandle(DataMsg dataMsg) {
-//        HashMap<String, Object> map = dataMsg.dataAsMap();
-//        int age = (int) map.get("age");
-//        this.result = nodeTemplate;
+        HashMap<String, Object> map = dataMsg.dataAsMap();
+        List<DataMsgCheck> checks = this.nodeTemplate.getParameters();
         /**
          * 验证DataMsg数据是否合法
          */
+        if (checks.stream().allMatch(check -> map.containsKey(check.getName()))) {
+            OutputSlot<DataMsg> outputs = getOutputs();
+            outputs.send(dataMsg);
+        } else {
+            System.out.println("数据校验失败，匹配失败，拒绝执行！  数据："+map.toString());
+        }
+
     }
 
     public BeginRuleTemplate getNodeTemplate() {

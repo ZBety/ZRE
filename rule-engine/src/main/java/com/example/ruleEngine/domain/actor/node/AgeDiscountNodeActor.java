@@ -2,6 +2,7 @@ package com.example.ruleEngine.domain.actor.node;
 
 import com.example.ruleEngine.domain.actor.NodeActor;
 import com.example.ruleEngine.domain.actor.node.template.AgeDiscountRuleTemplate;
+import com.example.ruleEngine.domain.io.OutputSlot;
 import com.example.ruleEngine.domain.layout.DiagramRuleModel;
 import com.example.ruleEngine.domain.layout.NodeRuleModel;
 import com.example.ruleEngine.engine.RuleEngineContext;
@@ -15,7 +16,7 @@ public class AgeDiscountNodeActor extends NodeActor<AgeDiscountRuleTemplate, Nod
 
     public static final String NAME = "AGE_DISCOUNT_RULE";
 
-    private double result;
+    private Object result;
 
     public AgeDiscountNodeActor(RuleEngineContext ctx, DiagramRuleModel diagramRuleModel, NodeRuleModel nodeRuleModel) {
         super(ctx, diagramRuleModel, nodeRuleModel);
@@ -25,15 +26,21 @@ public class AgeDiscountNodeActor extends NodeActor<AgeDiscountRuleTemplate, Nod
     @Override
     protected void onHandle(DataMsg dataMsg) {
         HashMap<String, Object> map = dataMsg.dataAsMap();
+
         int age = (int) map.get("age");
-        this.result = nodeTemplate.calculateDiscount(age);
+        double amount = (double) map.get("amount");
+        this.result = nodeTemplate.calculateDiscount(age)*amount;
+        System.out.println("年龄折扣规则节点运行结果："+result);
+        OutputSlot<DataMsg> outputs = getOutputs();
+        map.put("result", this.result);
+        outputs.send(dataMsg);
     }
 
     public AgeDiscountRuleTemplate getNodeTemplate() {
         return nodeTemplate;
     }
 
-    public double getResult() {
+    public Object getResult() {
         return result;
     }
 }
