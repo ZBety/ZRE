@@ -3,7 +3,7 @@ package com.example.ruleEngine.domain.actor.rules;
 import com.example.ruleEngine.domain.actor.node.template.AgeDiscountRuleTemplate;
 import com.example.ruleEngine.domain.rules.RuleData;
 import com.example.ruleEngine.engine.RuleEngineContext;
-import com.example.ruleEngine.msg.DataMsg;
+import org.sdk.msg.DataMsg;
 
 import java.util.HashMap;
 

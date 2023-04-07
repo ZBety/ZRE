@@ -1,8 +1,8 @@
 package com.example.ruleEngine.engine;
 
-import com.example.ruleEngine.domain.actor.RunningState;
 import com.example.ruleEngine.domain.layout.DiagramRuleModel;
-import com.example.ruleEngine.domain.layout.RuleModel;
+import org.sdk.RuleModel;
+import org.sdk.RunningState;
 
 import java.util.List;
 

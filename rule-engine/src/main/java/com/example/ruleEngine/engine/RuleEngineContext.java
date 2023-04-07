@@ -1,7 +1,6 @@
 package com.example.ruleEngine.engine;
 
 import com.example.ruleEngine.config.RuleEngineConfiguration;
-import com.example.ruleEngine.service.Action;
 import org.springframework.context.ApplicationContext;
 
 public class RuleEngineContext {

@@ -1,12 +1,15 @@
 package com.example.ruleEngine.util;
 
 import com.example.ruleEngine.domain.AttributeDescribe;
-import com.example.ruleEngine.domain.ModelProperty;
 import com.example.ruleEngine.domain.NodeDefinitionInfo;
-import com.example.ruleEngine.domain.Template;
+import org.sdk.ModelProperty;
+import org.sdk.Template;
 
 import java.lang.reflect.Field;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 public class NodeModelDescriptor {
 

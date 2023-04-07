@@ -1,4 +1,4 @@
-package com.example.ruleEngine.domain.actor;
+package org.sdk;
 
 public enum RunningState {
 

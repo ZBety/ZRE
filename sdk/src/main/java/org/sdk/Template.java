@@ -1,4 +1,4 @@
-package com.example.ruleEngine.domain;
+package org.sdk;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

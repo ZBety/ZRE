@@ -1,7 +1,8 @@
 package com.example.ruleEngine.domain.layout;
 
-import com.example.ruleEngine.domain.DataModel;
 import lombok.Data;
+import org.sdk.DataModel;
+import org.sdk.RuleModel;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 

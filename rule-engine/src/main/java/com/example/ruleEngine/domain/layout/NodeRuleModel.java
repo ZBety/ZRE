@@ -1,10 +1,11 @@
 package com.example.ruleEngine.domain.layout;
 
 import com.example.ruleEngine.domain.AttributeDescribe;
-import com.example.ruleEngine.domain.DataModel;
 import com.example.ruleEngine.domain.Position;
-import com.example.ruleEngine.util.ObjectUtil;
 import lombok.Data;
+import org.sdk.DataModel;
+import org.sdk.RuleModel;
+import org.sdk.util.ObjectUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +36,7 @@ public class NodeRuleModel implements RuleModel {
     }
 
     public void propToLayout() {
+        //有bug，未对节点中，属性对空值进行处理，复现方式：开始节点中不设置数据结构
         this.layout = this.properties.stream()
                 .collect(Collectors.toMap(AttributeDescribe::getName,AttributeDescribe::getValue));
     }

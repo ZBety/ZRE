@@ -1,4 +1,4 @@
-package com.example.ruleEngine.domain.layout;
+package org.sdk;
 
 import java.util.List;
 
@@ -21,9 +21,4 @@ public interface RuleModel {
 //    DiagramPlugin getPlugins();
 //    void setPlugins(DiagramPlugin plugins);
 
-    List<EndpointModel> getInputs();
-    void setInputs(List<EndpointModel> inputs);
-
-    List<EndpointModel> getOutputs();
-    void setOutputs(List<EndpointModel> outputs);
 }

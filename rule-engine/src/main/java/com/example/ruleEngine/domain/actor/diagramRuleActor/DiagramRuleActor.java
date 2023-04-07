@@ -1,20 +1,19 @@
 package com.example.ruleEngine.domain.actor.diagramRuleActor;
 
 import com.example.ruleEngine.domain.actor.ActorFactory;
-import com.example.ruleEngine.domain.actor.NodeActor;
-import com.example.ruleEngine.domain.actor.RunningState;
-import com.example.ruleEngine.domain.io.InputSlot;
-import com.example.ruleEngine.domain.io.OutputSlot;
 import com.example.ruleEngine.domain.layout.DiagramRuleModel;
 import com.example.ruleEngine.domain.layout.Edge;
-import com.example.ruleEngine.domain.layout.EndpointModel;
-import com.example.ruleEngine.domain.layout.PipeModel;
 import com.example.ruleEngine.engine.RuleEngineContext;
-import com.example.ruleEngine.msg.DataMsg;
+import org.sdk.RunningState;
+import org.sdk.actor.NodeActor;
+import org.sdk.io.InputSlot;
+import org.sdk.io.OutputSlot;
+import org.sdk.msg.DataMsg;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class DiagramRuleActor extends NodeActor<DiagramRuleModel, DiagramRuleModel> {
@@ -28,7 +27,7 @@ public class DiagramRuleActor extends NodeActor<DiagramRuleModel, DiagramRuleMod
     private final static Logger logger = LoggerFactory.getLogger(DiagramRuleActor.class);
 
     public DiagramRuleActor(RuleEngineContext ctx, DiagramRuleModel ruleModel) {
-        super(ctx, ruleModel, ruleModel);
+        super(ruleModel);
         this.ctx = ctx;
         this.ruleModel = ruleModel;
         init();

@@ -1,13 +1,11 @@
 package com.example.ruleEngine.domain.actor.node;
 
-import com.example.ruleEngine.domain.actor.NodeActor;
-import com.example.ruleEngine.domain.actor.node.template.AgeDiscountRuleTemplate;
 import com.example.ruleEngine.domain.actor.node.template.EndRuleTemplate;
-import com.example.ruleEngine.domain.io.OutputSlot;
 import com.example.ruleEngine.domain.layout.DiagramRuleModel;
 import com.example.ruleEngine.domain.layout.NodeRuleModel;
 import com.example.ruleEngine.engine.RuleEngineContext;
-import com.example.ruleEngine.msg.DataMsg;
+import org.sdk.actor.NodeActor;
+import org.sdk.msg.DataMsg;
 
 import java.util.HashMap;
 
@@ -19,7 +17,7 @@ public class EndNodeActor extends NodeActor<EndRuleTemplate, NodeRuleModel> {
     private Object result;
 
     public EndNodeActor(RuleEngineContext ctx, DiagramRuleModel diagramRuleModel, NodeRuleModel nodeRuleModel) {
-        super(ctx, diagramRuleModel, nodeRuleModel);
+        super(nodeRuleModel);
         this.nodeTemplate = nodeRuleModel.getNodeTemplate(EndRuleTemplate.class);
     }
 

@@ -1,10 +1,10 @@
 package com.example.ruleEngine.domain.actor.node.template;
 
 import com.example.ruleEngine.domain.DataMsgCheck;
-import com.example.ruleEngine.domain.ModelProperty;
-import com.example.ruleEngine.domain.NodeTemplate;
-import com.example.ruleEngine.domain.Template;
 import lombok.Data;
+import org.sdk.ModelProperty;
+import org.sdk.Template;
+import org.sdk.template.NodeTemplate;
 
 import java.util.List;
 

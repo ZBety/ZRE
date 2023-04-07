@@ -9,9 +9,10 @@ import com.example.ruleEngine.domain.actor.rules.AgeDiscountRuleActor;
 import com.example.ruleEngine.domain.actor.rules.RuleActor;
 import com.example.ruleEngine.domain.layout.DiagramRuleModel;
 import com.example.ruleEngine.domain.layout.NodeRuleModel;
-import com.example.ruleEngine.domain.layout.RuleModel;
 import com.example.ruleEngine.domain.rules.RuleData;
 import com.example.ruleEngine.engine.RuleEngineContext;
+import org.sdk.RuleModel;
+import org.sdk.actor.NodeActor;
 
 public class ActorFactory {
 

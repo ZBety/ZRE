@@ -2,13 +2,11 @@ package com.example.ruleEngine.controller;
 
 import com.example.ruleEngine.application.DiscountRuleEngineApplication;
 import com.example.ruleEngine.domain.actor.rules.RuleActor;
-import com.example.ruleEngine.msg.DataMsg;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.sdk.msg.DataMsg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
 
 @RestController
 @Tag(name = "规则测试接口")

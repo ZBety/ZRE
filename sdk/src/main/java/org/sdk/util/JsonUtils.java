@@ -1,4 +1,4 @@
-package com.example.ruleEngine.util;
+package org.sdk.util;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -49,7 +49,7 @@ public class JsonUtils {
     }
 
     @SuppressWarnings("unchecked")
-    public static Map<String, Object> fromJsonStringToMap(String json) throws JsonProcessingException {
+    public static Map<String, Object> fromJsonStringToMap(String json) throws Exception {
         try {
             return objectMapper.readValue(json, Map.class);
         } catch (Exception e) {

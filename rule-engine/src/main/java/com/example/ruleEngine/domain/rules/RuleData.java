@@ -1,10 +1,10 @@
 package com.example.ruleEngine.domain.rules;
 
-import com.example.ruleEngine.domain.DataModel;
 import com.example.ruleEngine.domain.layout.EndpointModel;
-import com.example.ruleEngine.domain.layout.RuleModel;
-import com.example.ruleEngine.util.ObjectUtil;
 import lombok.Data;
+import org.sdk.DataModel;
+import org.sdk.RuleModel;
+import org.sdk.util.ObjectUtil;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -88,23 +88,4 @@ public class RuleData implements RuleModel {
 
     }
 
-    @Override
-    public List<EndpointModel> getInputs() {
-        return null;
-    }
-
-    @Override
-    public void setInputs(List<EndpointModel> inputs) {
-
-    }
-
-    @Override
-    public List<EndpointModel> getOutputs() {
-        return null;
-    }
-
-    @Override
-    public void setOutputs(List<EndpointModel> outputs) {
-
-    }
 }

@@ -1,24 +1,17 @@
-package com.example.ruleEngine.domain.actor;
+package org.sdk.actor;
 
-import com.example.ruleEngine.domain.DataModel;
-import com.example.ruleEngine.domain.io.InputSlot;
-import com.example.ruleEngine.domain.io.OutputSlot;
-import com.example.ruleEngine.domain.layout.DiagramRuleModel;
-import com.example.ruleEngine.domain.layout.Edge;
-import com.example.ruleEngine.domain.layout.RuleModel;
-import com.example.ruleEngine.engine.RuleEngineContext;
-import com.example.ruleEngine.msg.DataMsg;
-import com.example.ruleEngine.service.Action;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import org.sdk.DataModel;
+import org.sdk.RuleModel;
+import org.sdk.RunningState;
+import org.sdk.io.InputSlot;
+import org.sdk.io.OutputSlot;
+import org.sdk.msg.DataMsg;
 
 public abstract class NodeActor<M extends DataModel, T extends RuleModel> implements Actor {
 
-    RuleEngineContext ctx;
+//    RuleEngineContext ctx;
 
-    DiagramRuleModel diagramRuleModel;
+//    DiagramRuleModel diagramRuleModel;
 
     T nodeRuleModel;
 
@@ -31,9 +24,9 @@ public abstract class NodeActor<M extends DataModel, T extends RuleModel> implem
 
     private Boolean end = false;
 
-    public NodeActor(RuleEngineContext ctx, DiagramRuleModel diagramRuleModel, T nodeRuleModel) {
-        this.ctx = ctx;
-        this.diagramRuleModel = diagramRuleModel;
+    public NodeActor( T nodeRuleModel) {
+//        this.ctx = ctx;
+//        this.diagramRuleModel = diagramRuleModel;
         this.nodeRuleModel = nodeRuleModel;
         begin = nodeRuleModel.getType().equals("BEGIN_RULE");
         end = nodeRuleModel.getType().equals("End_RULE");
@@ -129,7 +122,7 @@ public abstract class NodeActor<M extends DataModel, T extends RuleModel> implem
         return end;
     }
 
-    public Action getAction() {
-        return this.ctx.getBean(Action.class);
-    }
+//    public Action getAction() {
+//        return this.ctx.getBean(Action.class);
+//    }
 }

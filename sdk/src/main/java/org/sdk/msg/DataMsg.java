@@ -1,10 +1,9 @@
-package com.example.ruleEngine.msg;
+package org.sdk.msg;
 
-import com.example.ruleEngine.util.ObjectUtil;
 import lombok.Data;
+import org.sdk.util.ObjectUtil;
 
 import java.util.HashMap;
-import java.util.Map;
 
 @Data
 public class DataMsg {

@@ -1,16 +1,12 @@
 package com.example.ruleEngine.engine;
 
 import com.example.ruleEngine.config.RuleEngineConfiguration;
-import com.example.ruleEngine.domain.NodeTemplate;
 import com.example.ruleEngine.domain.actor.ActorFactory;
-import com.example.ruleEngine.domain.actor.RunningState;
 import com.example.ruleEngine.domain.actor.diagramRuleActor.DiagramRuleActor;
-import com.example.ruleEngine.domain.actor.rules.RuleActor;
-import com.example.ruleEngine.domain.io.OutputSlot;
 import com.example.ruleEngine.domain.layout.DiagramRuleModel;
-import com.example.ruleEngine.domain.rules.RuleData;
-import com.example.ruleEngine.msg.DataMsg;
-import com.example.ruleEngine.service.Action;
+import org.sdk.RunningState;
+import org.sdk.io.OutputSlot;
+import org.sdk.msg.DataMsg;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;

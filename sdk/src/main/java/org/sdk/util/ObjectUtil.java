@@ -1,4 +1,4 @@
-package com.example.ruleEngine.util;
+package org.sdk.util;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -39,7 +39,7 @@ public class ObjectUtil {
         return objectMapper.convertValue(data, MAP_TYPE);
     }
 
-    public static Map<String, Object> fromJsonStringToMap(String jsonString) throws IOException {
+    public static Map<String, Object> fromJsonStringToMap(String jsonString) throws Exception {
         return JsonUtils.fromJsonStringToMap(jsonString);
     }
 

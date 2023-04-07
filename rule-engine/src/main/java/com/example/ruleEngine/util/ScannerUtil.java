@@ -1,8 +1,8 @@
 package com.example.ruleEngine.util;
 
 import com.example.ruleEngine.domain.NodeDefinitionInfo;
-import com.example.ruleEngine.domain.Template;
 import org.reflections.Reflections;
+import org.sdk.Template;
 
 import java.util.List;
 import java.util.Set;

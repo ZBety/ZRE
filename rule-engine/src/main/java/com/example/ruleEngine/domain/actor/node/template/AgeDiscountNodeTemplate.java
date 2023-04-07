@@ -1,7 +1,5 @@
 package com.example.ruleEngine.domain.actor.node.template;
 
-import com.example.ruleEngine.domain.Template;
-
 public class AgeDiscountNodeTemplate {
 
     private String id;
