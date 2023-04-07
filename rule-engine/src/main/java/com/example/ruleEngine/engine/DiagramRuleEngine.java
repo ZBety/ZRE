@@ -10,6 +10,7 @@ import com.example.ruleEngine.domain.io.OutputSlot;
 import com.example.ruleEngine.domain.layout.DiagramRuleModel;
 import com.example.ruleEngine.domain.rules.RuleData;
 import com.example.ruleEngine.msg.DataMsg;
+import com.example.ruleEngine.service.Action;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -28,8 +29,8 @@ public class DiagramRuleEngine implements RuleEngine<DiagramRuleModel>{
     private RuleEngineContext ctx;
 
     private RuleEngineConfiguration config;
-
     private RunningState runningState = RunningState.UNKNOWN;
+
     private HashMap<String, DiagramRuleActor> actors = new HashMap<>();
     private OutputSlot<DataMsg> match = new OutputSlot<>();
 
@@ -76,6 +77,8 @@ public class DiagramRuleEngine implements RuleEngine<DiagramRuleModel>{
         actors.forEach( (key, actor) -> actor.stop());
         this.runningState = RunningState.STOPPED;
     }
+
+
 
     @Override
     public void loadRule(List<DiagramRuleModel> rules) {
@@ -130,6 +133,40 @@ public class DiagramRuleEngine implements RuleEngine<DiagramRuleModel>{
             stop();
             logger.debug("规则'" + removedRule.getId() + "'已卸载");
         }
+    }
+
+    @Override
+    public void unloadRule(String ruleId) {
+        DiagramRuleActor removedRule = this.actors.remove(ruleId);
+        if (removedRule != null) {
+            stop();
+            logger.debug("规则'" + removedRule.getId() + "'已卸载");
+        }
+    }
+
+    @Override
+    public void reStart() {
+
+    }
+
+    @Override
+    public void reload(DiagramRuleModel model) {
+        unloadRule(model);
+        loadRule(model);
+        if (getLoadedRules().isEmpty()){
+            logger.warn(ctx.getName() + "引擎未启动，加载规则为空");
+//            throw new Exception("DiscountRuleEngine 未包含任何有效规则，无法启动！");
+        }
+        actors.get(model.getId()).start();
+        match.clear();
+        this.actors.values().forEach(item -> {
+            match.connect(item.getBegin().getInputs());
+        });
+    }
+
+    @Override
+    public void reload(String diagramId) {
+
     }
 
     @Override

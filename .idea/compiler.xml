@@ -9,12 +9,9 @@
         <outputRelativeToContentRoot value="true" />
         <module name="workflow-engine" />
         <module name="rule-engine" />
+        <module name="sdk" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="rule-engine" target="17" />
-      <module name="workflow-engine" target="17" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

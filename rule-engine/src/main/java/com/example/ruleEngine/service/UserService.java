@@ -6,6 +6,7 @@ import com.example.ruleEngine.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -31,13 +32,13 @@ public class UserService implements UserDetailsService {
 
     public boolean login(LoginRequest loginRequest) {
         User user = userRepo.findByUsername(loginRequest.getUsername());
-        if (user==null)
+        if (user == null)
             return false;
         return passwordEncoder.matches(loginRequest.getPassword(), user.getPassword());
     }
 
-    public String create(User user){
-        if (userRepo.findByUsername(user.getUsername())!=null)
+    public String create(User user) {
+        if (userRepo.findByUsername(user.getUsername()) != null)
             return "创建失败，用户已存在！";
         user.setId(UUID.randomUUID().toString());
         String password = passwordEncoder.encode(user.getPassword());
@@ -66,7 +67,8 @@ public class UserService implements UserDetailsService {
         userRepo.save(user);
     }
 
-    public User getUserDetail(String username) {
+    public User getUserDetail() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
         return userRepo.findByUsername(username);
     }
 

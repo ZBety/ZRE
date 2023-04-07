@@ -6,10 +6,7 @@ import com.example.ruleEngine.domain.NodeDefinitionInfo;
 import com.example.ruleEngine.domain.Template;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 public class NodeModelDescriptor {
 
@@ -29,9 +26,16 @@ public class NodeModelDescriptor {
             AttributeDescribe attribute = new AttributeDescribe();
             attribute.setName(field.getName());
             attribute.setType(field.getType().getName());
+            if (modelProperty != null && !Objects.equals(modelProperty.defaultValue(), "")){
+                Object value = modelProperty.defaultValue();
+                if (modelProperty.defaultType().equals("List")){
+                    value = modelProperty.defaultValue().split(",");
+                }
+                attribute.setValue(value);
+            }
             Optional.ofNullable(modelProperty)
-                            .map(ModelProperty::defaultValue)
-                            .ifPresent(attribute::setValue);
+                    .map(ModelProperty::component)
+                    .ifPresent(attribute::setComponent);
             attribute.setDescription(null);
             attributes.add(attribute);
         }

@@ -7,6 +7,5 @@ import java.lang.annotation.RetentionPolicy;
 public @interface Template {
     String name() default "";
     String Type() default "";
-
     String description() default "";
 }

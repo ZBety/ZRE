@@ -9,6 +9,7 @@ import com.example.ruleEngine.engine.DiagramRuleEngine;
 import com.example.ruleEngine.engine.DiscountRuleEngine;
 import com.example.ruleEngine.repositories.DiagramRuleModelRepository;
 import com.example.ruleEngine.repositories.RuleDataRepository;
+import com.example.ruleEngine.service.Action;
 import com.example.ruleEngine.util.StreamUtil;
 import lombok.Synchronized;
 import org.slf4j.Logger;
@@ -18,6 +19,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,17 +31,22 @@ public class DiagramRuleEngineApplication implements CommandLineRunner {
     private static final Logger logger = LoggerFactory.getLogger(DiagramRuleEngineApplication.class);
 
     @Autowired
-    private static ApplicationContext ctx;
+    private ApplicationContext ctx;
 
     @Autowired
-    private static RuleEngineConfiguration config;
+    private RuleEngineConfiguration config;
 
     @Autowired
     private DiagramRuleModelRepository drmRepo;
 
-    private DiagramRuleEngine engine = new DiagramRuleEngine(DiagramRuleEngine.class.getSimpleName(), ctx, config);
+    private DiagramRuleEngine engine;
 
     private Boolean status = false;
+
+    @PostConstruct
+    public void init() {
+        engine = new DiagramRuleEngine(DiagramRuleEngine.class.getSimpleName(), ctx, config);
+    }
 
     @Override
     public void run(String... args) throws Exception {
@@ -88,4 +95,5 @@ public class DiagramRuleEngineApplication implements CommandLineRunner {
     public DiagramRuleEngine getEngine() {
         return engine;
     }
+
 }

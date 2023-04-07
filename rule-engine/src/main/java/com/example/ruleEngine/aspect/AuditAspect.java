@@ -2,9 +2,11 @@ package com.example.ruleEngine.aspect;
 
 import com.example.ruleEngine.domain.Audit;
 import com.example.ruleEngine.domain.AuditAOP;
+import com.example.ruleEngine.domain.ReloadListenerAOP;
 import com.example.ruleEngine.domain.ResponseModel;
 import com.example.ruleEngine.repositories.AuditRepository;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -54,4 +56,17 @@ public class AuditAspect {
         auditRepo.save(audit);
         return result;
     }
+
+//    @After("@annotation(com.example.ruleEngine.domain.ReloadListenerAOP)")
+//    public void reloadListener(ProceedingJoinPoint joinPoint) throws Throwable {
+////
+////        String params = Arrays.toString(joinPoint.getArgs());
+////        String remoteAddress = request.getRemoteAddr();
+////
+////        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+////        Method method = signature.getMethod();
+////        ReloadListenerAOP auditAnnotation = method.getAnnotation(ReloadListenerAOP.class);
+////
+////        ResponseEntity<ResponseModel> result = (ResponseEntity<ResponseModel>) joinPoint.proceed();
+//    }
 }

@@ -7,4 +7,6 @@ import java.lang.annotation.RetentionPolicy;
 public @interface ModelProperty {
     String defaultValue() default "";
     String description() default "";
+    String component() default "Default";
+    String defaultType() default "String";
 }

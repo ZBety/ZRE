@@ -33,11 +33,15 @@ public class BeginNodeActor extends NodeActor<BeginRuleTemplate, NodeRuleModel> 
         /**
          * 验证DataMsg数据是否合法
          */
-        if (checks.stream().allMatch(check -> map.containsKey(check.getName()))) {
-            OutputSlot<DataMsg> outputs = getOutputs();
-            outputs.send(dataMsg);
-        } else {
-            System.out.println("数据校验失败，匹配失败，拒绝执行！  数据："+map.toString());
+        if(this.nodeTemplate.getTopic().equals(map.get("topic"))) {
+            if (checks.stream().allMatch(check -> map.containsKey(check.getName()))) {
+                OutputSlot<DataMsg> outputs = getOutputs();
+                outputs.send(dataMsg);
+            } else {
+                System.out.println("数据校验失败，匹配失败，拒绝执行！  数据："+map.toString());
+            }
+        }else {
+            System.out.println("匹配失败！");
         }
 
     }

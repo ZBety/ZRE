@@ -14,6 +14,9 @@ public class OutputSlot<T> {
         inputs.add(input);
     }
 
+    public void clear() {
+        this.inputs.clear();
+    }
     public void send(T data) {
         inputs.forEach(input -> input.receive(data));
     }

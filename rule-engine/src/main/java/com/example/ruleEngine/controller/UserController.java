@@ -50,8 +50,8 @@ public class UserController {
     }
 
     @GetMapping("/getDetail")
-    public ResponseEntity<?> getDetail(String username) {
-        return ResponseEntity.ok(new ResponseModel(userService.getUserDetail(username), "success", 200));
+    public ResponseEntity<?> getDetail() {
+        return ResponseEntity.ok(new ResponseModel(userService.getUserDetail(), "success", 200));
     }
 
 }

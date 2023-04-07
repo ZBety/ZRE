@@ -28,7 +28,7 @@ public class AgeDiscountNodeActor extends NodeActor<AgeDiscountRuleTemplate, Nod
         HashMap<String, Object> map = dataMsg.dataAsMap();
 
         int age = (int) map.get("age");
-        double amount = (double) map.get("amount");
+        double amount = Double.parseDouble(map.get("amount").toString());
         this.result = nodeTemplate.calculateDiscount(age)*amount;
         System.out.println("年龄折扣规则节点运行结果："+result);
         OutputSlot<DataMsg> outputs = getOutputs();

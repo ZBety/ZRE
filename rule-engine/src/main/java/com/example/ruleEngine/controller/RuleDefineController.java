@@ -52,4 +52,11 @@ public class RuleDefineController {
         List<NodeDefinitionInfo> templates = ScannerUtil.findAllTemplate();
         return ResponseEntity.ok(new ResponseModel(templates, "获取成功！", 200));
     }
+
+    @GetMapping("/getTypes")
+    @Operation(summary = "查看规则节点类型")
+    public ResponseEntity<?> getTypes() {
+        List<String> templates = ScannerUtil.findAllType();
+        return ResponseEntity.ok(new ResponseModel(templates, "获取成功！", 200));
+    }
 }

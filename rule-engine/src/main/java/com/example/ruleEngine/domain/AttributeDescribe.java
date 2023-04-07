@@ -8,4 +8,5 @@ public class AttributeDescribe {
     String type;
     Object value;
     String description;
+    String Component;
 }

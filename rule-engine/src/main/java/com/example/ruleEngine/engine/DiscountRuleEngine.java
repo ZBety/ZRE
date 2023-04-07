@@ -5,6 +5,7 @@ import com.example.ruleEngine.domain.NodeTemplate;
 import com.example.ruleEngine.domain.actor.ActorFactory;
 import com.example.ruleEngine.domain.actor.RunningState;
 import com.example.ruleEngine.domain.actor.rules.RuleActor;
+import com.example.ruleEngine.domain.layout.DiagramRuleModel;
 import com.example.ruleEngine.domain.rules.RuleData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -109,6 +110,26 @@ public class DiscountRuleEngine implements RuleEngine<RuleData>{
 //            stop();
 //            logger.debug("规则'" + removedRule.getId() + "'已卸载");
 //        }
+    }
+
+    @Override
+    public void unloadRule(String ruleId) {
+
+    }
+
+    @Override
+    public void reStart() {
+
+    }
+
+    @Override
+    public void reload(DiagramRuleModel model) {
+
+    }
+
+    @Override
+    public void reload(String diagramId) {
+
     }
 
     @Override

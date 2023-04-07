@@ -3,8 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/ZRE.iml" filepath="$PROJECT_DIR$/.idea/ZRE.iml" />
-      <module fileurl="file://$PROJECT_DIR$/rule-engine/rule-engine.iml" filepath="$PROJECT_DIR$/rule-engine/rule-engine.iml" />
-      <module fileurl="file://$PROJECT_DIR$/workflow-engine/workflow-engine.iml" filepath="$PROJECT_DIR$/workflow-engine/workflow-engine.iml" />
     </modules>
   </component>
 </project>

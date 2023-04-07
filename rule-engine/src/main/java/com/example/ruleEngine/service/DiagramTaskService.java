@@ -8,10 +8,11 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 
- @Service
+@Service
 public class DiagramTaskService {
 
     @Autowired
+    @Lazy
     private DiagramRuleEngineApplication application;
 
     private DiagramRuleEngine engine;

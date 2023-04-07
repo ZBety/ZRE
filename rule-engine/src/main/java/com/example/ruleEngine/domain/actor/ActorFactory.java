@@ -3,6 +3,7 @@ package com.example.ruleEngine.domain.actor;
 import com.example.ruleEngine.domain.actor.diagramRuleActor.DiagramRuleActor;
 import com.example.ruleEngine.domain.actor.node.AgeDiscountNodeActor;
 import com.example.ruleEngine.domain.actor.node.BeginNodeActor;
+import com.example.ruleEngine.domain.actor.node.CouponsNodeActor;
 import com.example.ruleEngine.domain.actor.node.EndNodeActor;
 import com.example.ruleEngine.domain.actor.rules.AgeDiscountRuleActor;
 import com.example.ruleEngine.domain.actor.rules.RuleActor;
@@ -40,6 +41,7 @@ public class ActorFactory {
             case AgeDiscountNodeActor.NAME -> new AgeDiscountNodeActor(ctx, diagramRuleModel, nodeRuleModel);
             case BeginNodeActor.NAME -> new BeginNodeActor(ctx, diagramRuleModel, nodeRuleModel);
             case EndNodeActor.NAME -> new EndNodeActor(ctx, diagramRuleModel, nodeRuleModel);
+            case CouponsNodeActor.NAME -> new CouponsNodeActor(ctx, diagramRuleModel, nodeRuleModel);
 //            default -> {System.out.println("没有找到" + nodeRuleModel.getType() +"类型的执行器！");
 //            null ;}
             default -> null;

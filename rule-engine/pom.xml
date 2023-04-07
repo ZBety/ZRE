@@ -106,6 +106,12 @@
             <version>1.9.7</version>
         </dependency>
 
+<!--        <dependency>-->
+<!--            <groupId>org.mapstruct</groupId>-->
+<!--            <artifactId>mapstruct</artifactId>-->
+<!--            <version>1.5.3.Final</version>-->
+<!--        </dependency>-->
+
     </dependencies>
 
     <build>
@@ -114,6 +120,23 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.mapstruct</groupId>-->
+<!--                <artifactId>mapstruct-maven-plugin</artifactId>-->
+<!--                <version>1.5.3.Final</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <goals>-->
+<!--                            <goal>compile</goal>-->
+<!--                            <goal>test-compile</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <sourceJavaVersion>17</sourceJavaVersion>-->
+<!--                            <targetJavaVersion>17</targetJavaVersion>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
         </plugins>
     </build>
     <repositories>

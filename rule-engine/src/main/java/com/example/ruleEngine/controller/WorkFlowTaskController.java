@@ -25,6 +25,7 @@ public class WorkFlowTaskController {
     @PostMapping("/execute")
     @Operation(summary = "执行流程")
     public ResponseEntity<?> execute(@RequestBody Object data) {
+        System.out.println(data.toString());
         taskService.execute(data);
         return ResponseEntity.ok(new ResponseModel(null,"success",200));
     }

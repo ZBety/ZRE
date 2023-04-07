@@ -18,4 +18,12 @@ public class ScannerUtil {
         return types.stream().map(NodeModelDescriptor::describe)
                 .collect(Collectors.toList());
     }
+
+    public static List<String> findAllType() {
+        Reflections reflections = new Reflections(packageName);
+        Set<Class<?>> types = reflections.getTypesAnnotatedWith(Template.class);
+        return types.stream()
+                .map((item) -> item.getAnnotation(Template.class).Type())
+                .collect(Collectors.toList());
+    }
 }

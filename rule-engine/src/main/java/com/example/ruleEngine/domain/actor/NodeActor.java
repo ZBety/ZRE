@@ -8,6 +8,7 @@ import com.example.ruleEngine.domain.layout.Edge;
 import com.example.ruleEngine.domain.layout.RuleModel;
 import com.example.ruleEngine.engine.RuleEngineContext;
 import com.example.ruleEngine.msg.DataMsg;
+import com.example.ruleEngine.service.Action;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -126,5 +127,9 @@ public abstract class NodeActor<M extends DataModel, T extends RuleModel> implem
 
     public Boolean isEnd() {
         return end;
+    }
+
+    public Action getAction() {
+        return this.ctx.getBean(Action.class);
     }
 }
